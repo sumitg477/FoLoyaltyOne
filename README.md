@@ -36,3 +36,9 @@ CREATE TABLE table_user (
 );
 
 Called the db to store records using psycopg2.
+
+Step 5: Extend the form to capture the user name and a list of all the submissions by user. Add another method to the service to return all text submissions and display them at the bottom of the page.
+
+I altered the user table to add a new column and added a user name field in the front end. 
+
+I added backend functionality to save the username along with the text in the db. I also added a query to fetch all of the user_text and bring it to the frontend.
