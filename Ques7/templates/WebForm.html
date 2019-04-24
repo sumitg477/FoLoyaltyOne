@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Enter Text</title>
+</head>
+<body>
+
+<h1>Web Form</h1>
+
+<div>
+  <label>Enter Your Username</label>
+  <label>Enter Your Text</label>
+  <label>Enter Your City</label>
+</div>
+<div>
+  <input type="text" id="userNameBox">
+  <input type="text" id="textBox">
+  <input type="text" id="cityBox">
+</div>
+<button onclick="sendTheAJAX()">Done</button>
+<div id="demo"></div>
+
+<script>
+  function sendTheAJAX() {
+    var myRequest = new XMLHttpRequest();
+          myRequest.open('GET', "http://127.0.0.1:5000/enterText?mirrorText="+document.getElementById("textBox").value+"&username="+document.getElementById("userNameBox").value+"&city="+document.getElementById("cityBox").value);
+          myRequest.onreadystatechange = function () {
+            if (myRequest.readyState === 4) {
+                var parsedJson = JSON.parse(myRequest.responseText);
+
+                var text = "<br>";
+                var x;
+                for (x in parsedJson) {
+                  var parsedJsonStingSplit = parsedJson[x].toString().split(',');
+                  var coordinates = getCoordinates(parsedJsonStingSplit[1]);
+                  text += parsedJsonStingSplit[0] + " City: " + parsedJsonStingSplit[1] + coordinates + "<br><div><p id = 'p_" + x + "'><input id = 'input_" + x + "'></input><button onclick='respond(" + x + ")'>Respond</button></div>";
+                }
+
+                 document.getElementById('demo').innerHTML = text;
+            }
+          };
+    myRequest.send();
+  }
+  function respond(y)
+  {
+	  document.getElementById("p_"+y).innerHTML = document.getElementById("input_"+y).value;
+  }
+  function getCoordinates(city)
+  {
+    var result = "";
+    $.ajax({
+    async: false,  
+    url: 'https://maps.googleapis.com/maps/api/geocode/json?address='+city+'&key=AIzaSyDcLGoUBxdIizI6IGfFYzRHNM1f2Bj2o9I',
+    type: 'GET',
+    success: function(res) {
+        result = " Latitude: " + res.results[0].geometry.location.lat + " Longitude: " + res.results[0].geometry.location.lng;
+    }
+    });
+    return result;
+  }
+</script>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</body>
+</html>
