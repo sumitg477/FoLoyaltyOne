@@ -47,3 +47,8 @@ Step 6: Extend your solution from previous challenge to allow “responding” t
 As always, extend your tests.
 
 FrontEnd - Parsed the JSON output, formatted it and displayed it properly along with the ability to respond for each stored text message.
+
+Step 7: Capture more data
+Capture user’s location (user enters the city) on the form. For every post, include city, city’s latitude and longitude and current temperature. Display this information on the form, next to each post.
+
+Make a new field in the frontend and db to store the city. Register with google maps api and call it to get the co-ordinates. Format it appropriately, to display the co-ordinates on the page, along with the post.
