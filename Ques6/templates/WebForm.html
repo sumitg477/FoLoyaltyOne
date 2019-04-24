@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Enter Text</title>
+</head>
+<body>
+
+<h1>Web Form</h1>
+
+<div>
+  <label>Enter Your Username</label>
+  <label>Enter Text</label>
+</div>
+<div>
+  <input type="text" id="UserNameBox">
+  <input type="text" id="textBox">  
+</div>
+<button onclick="sendTheAJAX()">Done</button>
+<div id="demo"></div>
+
+<script>
+  function sendTheAJAX() {
+    var myRequest = new XMLHttpRequest();
+          myRequest.open('GET', "http://127.0.0.1:5000/enterText?mirrorText="+document.getElementById("textBox").value+"&username="+document.getElementById("UserNameBox").value);
+          myRequest.onreadystatechange = function () {
+            if (myRequest.readyState === 4) {
+                var parsedJson = JSON.parse(myRequest.responseText);
+
+                var text = "<br>";
+                var x;
+                for (x in parsedJson) {
+                  text += parsedJson[x] + "<br><div><p id = 'p_" + x + "'><input id = 'input_" + x + "'></input><button onclick='respond(" + x + ")'>Respond</button></div>";
+                }
+
+                 document.getElementById('demo').innerHTML = text;
+            }
+          };
+    myRequest.send();
+  }
+  function respond(y)
+  {
+	  document.getElementById("p_"+y).innerHTML = document.getElementById("input_"+y).value;
+  }
+</script>
+</body>
+</html>
