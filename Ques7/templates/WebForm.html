@@ -33,7 +33,8 @@
                 for (x in parsedJson) {
                   var parsedJsonStingSplit = parsedJson[x].toString().split(',');
                   var coordinates = getCoordinates(parsedJsonStingSplit[1]);
-                  text += parsedJsonStingSplit[0] + " City: " + parsedJsonStingSplit[1] + coordinates + "<br><div><p id = 'p_" + x + "'><input id = 'input_" + x + "'></input><button onclick='respond(" + x + ")'>Respond</button></div>";
+                  var temperature = getTemperature(parsedJsonStingSplit[1]);
+                  text += parsedJsonStingSplit[0] + " City: " + parsedJsonStingSplit[1] + coordinates + temperature +"<br><div><p id = 'p_" + x + "'><input id = 'input_" + x + "'></input><button onclick='respond(" + x + ")'>Respond</button></div>";
                 }
 
                  document.getElementById('demo').innerHTML = text;
@@ -57,6 +58,19 @@
     }
     });
     return result;
+  }
+  function getTemperature(city)
+  {
+    var str = "";
+    $.ajax({
+    async: false,
+    url: 'https://api.openweathermap.org/data/2.5/weather?q='+city+'&APPID=1a766b58db94c343c37fbbe0ed797f9c&units=metric', 
+    type: 'GET',
+    success: function(res) {
+       str = str + " Temperature(Celcius): " +res.main.temp;
+    }
+    });
+    return str;
   }
 </script>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
