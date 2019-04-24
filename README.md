@@ -42,3 +42,8 @@ Step 5: Extend the form to capture the user name and a list of all the submissio
 I altered the user table to add a new column and added a user name field in the front end. 
 
 I added backend functionality to save the username along with the text in the db. I also added a query to fetch all of the user_text and bring it to the frontend.
+
+Step 6: Extend your solution from previous challenge to allow “responding” to already posted texts and display responses, indented, below the related text entry.
+As always, extend your tests.
+
+FrontEnd - Parsed the JSON output, formatted it and displayed it properly along with the ability to respond for each stored text message.
