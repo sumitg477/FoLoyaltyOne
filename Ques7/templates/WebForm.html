@@ -8,15 +8,16 @@
 <h1>Web Form</h1>
 
 <div>
-  <label>Enter Your Username</label>
-  <label>Enter Your Text</label>
-  <label>Enter Your City</label>
-</div>
-<div>
+  <label>Enter Username:</label>
   <input type="text" id="userNameBox">
+  <br><br>
+  <label>Enter Your Text:</label>
   <input type="text" id="textBox">
+  <br><br>
+  <label>Enter Your City:</label>
   <input type="text" id="cityBox">
 </div>
+<br>
 <button onclick="sendTheAJAX()">Done</button>
 <div id="demo"></div>
 
@@ -34,7 +35,7 @@
                   var parsedJsonStingSplit = parsedJson[x].toString().split(',');
                   var coordinates = getCoordinates(parsedJsonStingSplit[1]);
                   var temperature = getTemperature(parsedJsonStingSplit[1]);
-                  text += parsedJsonStingSplit[0] + " City: " + parsedJsonStingSplit[1] + coordinates + temperature +"<br><div><p id = 'p_" + x + "'><input id = 'input_" + x + "'></input><button onclick='respond(" + x + ")'>Respond</button></div>";
+                  text += parsedJsonStingSplit[0] + " City: " + parsedJsonStingSplit[1] + coordinates + temperature +"<br><div><p id = 'p_" + x + "'><input id = 'input_" + x + "'> </input><button onclick='respond(" + x + ")'>Respond</button></div>";
                 }
 
                  document.getElementById('demo').innerHTML = text;
