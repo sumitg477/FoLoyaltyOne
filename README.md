@@ -63,3 +63,15 @@ Table in Postgres(table name is table_user):
  city      | character varying(255)      |           |          |                                        | extended |              | 
 Indexes:
     "table_user_pkey" PRIMARY KEY, btree (id)
+     
+Command to create table:
+
+CREATE TABLE table_user (
+	id serial PRIMARY KEY,
+	user_text varchar (255),
+	user_name varchar (255),
+	city varchar (255),
+	ts timestamp without time zone default (now() at time zone 'edt')
+);
+
+Hosted on EC2, added NGINX and SSL. Can be accessed via https://www.cloudpath.tech/frontend
