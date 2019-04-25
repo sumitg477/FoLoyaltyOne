@@ -51,4 +51,4 @@ FrontEnd - Parsed the JSON output, formatted it and displayed it properly along 
 Step 7: Capture more data
 Capture user’s location (user enters the city) on the form. For every post, include city, city’s latitude and longitude and current temperature. Display this information on the form, next to each post.
 
-Make a new field in the frontend and db to store the city. Register with google maps api and call it to get the co-ordinates. Format it appropriately, to display the co-ordinates on the page, along with the post.
+Make a new field in the frontend and db to store the city. Register with google maps and open weather map api and call it to get the co-ordinates and temperature. Format it appropriately, to display the co-ordinates and temperature on the page, along with the post.
