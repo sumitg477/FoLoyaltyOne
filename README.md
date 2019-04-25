@@ -52,3 +52,14 @@ Step 7: Capture more data
 Capture user’s location (user enters the city) on the form. For every post, include city, city’s latitude and longitude and current temperature. Display this information on the form, next to each post.
 
 Make a new field in the frontend and db to store the city. Register with google maps and open weather map api and call it to get the co-ordinates and temperature. Format it appropriately, to display the co-ordinates and temperature on the page, along with the post.
+
+Table in Postgres(table name is table_user):
+ Column   |            Type             | Collation | Nullable |                Default                 | Storage  | Stats target | Description 
+-----------+-----------------------------+-----------+----------+----------------------------------------+----------+--------------+-------------
+ id        | integer                     |           | not null | nextval('table_user_id_seq'::regclass) | plain    |              | 
+ user_text | text                        |           |          |                                        | extended |              | 
+ ts        | timestamp without time zone |           |          | timezone('edt'::text, now())           | plain    |              | 
+ user_name | character varying(255)      |           |          |                                        | extended |              | 
+ city      | character varying(255)      |           |          |                                        | extended |              | 
+Indexes:
+    "table_user_pkey" PRIMARY KEY, btree (id)
